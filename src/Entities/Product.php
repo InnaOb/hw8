@@ -29,7 +29,9 @@ class Product
 
     public function __set($variable, $value)
     {
-        $this->$variable = $this->casts[$variable]::set($value);
+        if (array_key_exists($variable, $this->casts)) {
+            $this->$variable = $this->casts[$variable]::set($value);
+        }
     }
 
     public function __get($variable)
